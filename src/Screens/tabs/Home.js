@@ -1,11 +1,11 @@
 import { View, Text, FlatList, Image } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import Header  from '../../src/common/Header'
-import ecommerceStyle from '../Project-Styles/ecommerceStyles'
+import Header  from '../../common/Header'
+import ecommerceStyle from '../../Project-Styles/ecommerceStyles'
 import { useNavigation } from '@react-navigation/native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useDispatch } from 'react-redux'
-import { addProducts } from '../../src/redux/slices/ProductsSlice'
+import { addProducts } from '../../redux/slices/ProductsSlice'
 
 const Home = () => {
   const navigation = useNavigation();
@@ -25,8 +25,8 @@ const Home = () => {
   return (
     <View style={ecommerceStyle.homeContainer}>
       <Header 
-        leftIcon={require('../images/menu.png')}
-        rightIcon={require('../images/cart.png')}
+        leftIcon={require('../../images/menu.png')}
+        rightIcon={require('../../images/cart.png')}
         title = {'Grocery App'}
         onClickLeftIcon={()=> {navigation.openDrawer()}}
       />

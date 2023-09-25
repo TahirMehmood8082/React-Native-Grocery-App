@@ -3,7 +3,7 @@ import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from  '@react-navigation/native'
 import Main from './Screens/Main'
-import ProductDetail from './tabs/ProductDetail'
+import ProductDetail from './Screens/ProductDetail'
 
 const Stack = createStackNavigator()
 const AppNavigator = () => {
