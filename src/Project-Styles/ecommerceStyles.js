@@ -13,6 +13,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
+  wishlistTabContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
   header: {
     width: width,
     height: 65,
@@ -133,6 +137,17 @@ const styles = StyleSheet.create({
   wishlistIcon: {
     width: 24,
     height: 24,
+  },
+  wishlistCounter: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    backgroundColor: '#fff',
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   searchView: {
     width: '90%',

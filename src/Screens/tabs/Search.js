@@ -1,8 +1,8 @@
 import { View, Text, Image, TextInput, TouchableOpacity, FlatList } from 'react-native'
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import ecommerceStyles from '../Project-Styles/ecommerceStyles'
-import Header from '../common/Header'
+import ecommerceStyles from '../../Project-Styles/ecommerceStyles'
+import Header from '../../common/Header'
 import { useNavigation } from '@react-navigation/native'
 
 const Search = () => {
@@ -26,7 +26,7 @@ const Search = () => {
       <View style={ecommerceStyles.searchView}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <Image 
-            source={require('../images/search.png')}
+            source={require('../../images/search.png')}
             style={ecommerceStyles.searchIcon}
           />
           <TextInput 
@@ -50,7 +50,7 @@ const Search = () => {
             filterData('')
           }}>
           <Image
-            source={require('../images/clear.png')}
+            source={require('../../images/clear.png')}
             style={[ecommerceStyles.searchIcon, {width: 16, height: 16}]}
           />
         </TouchableOpacity>

@@ -1,11 +1,11 @@
 import { View, Text, Image, TouchableOpacity, Keyboard } from 'react-native'
 import React, {useState, useEffect} from 'react'
 import ecommerceStyles from '../Project-Styles/ecommerceStyles'
-import Home from '../tabs/Home'
-import Search from '../tabs/Search'
-import Wishlist from '../tabs/Wishlist'
-import Notification from '../tabs/Notification'
-import User from '../tabs/User'
+import Home from './tabs/Home'
+import Search from './tabs/Search'
+import Wishlist from './tabs/Wishlist'
+import Notification from './tabs/Notification'
+import User from './tabs/User'
 
 const HomeScreen = () => {
   const [selectedTab, setSelectedTab] = useState(0);
