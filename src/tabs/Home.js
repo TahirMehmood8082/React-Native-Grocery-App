@@ -4,17 +4,23 @@ import Header  from '../../src/common/Header'
 import ecommerceStyle from '../Project-Styles/ecommerceStyles'
 import { useNavigation } from '@react-navigation/native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
+import { useDispatch } from 'react-redux'
+import { addProducts } from '../../src/redux/slices/ProductsSlice'
 
 const Home = () => {
   const navigation = useNavigation();
   const [products, setProducts] = useState([])
+  const dispatch = useDispatch();
   useEffect(()=>{
     getProducts();
   })
   const getProducts = () =>{
     fetch('https://fakestoreapi.com/products')
       .then(res => res.json())
-      .then(json => setProducts(json));
+      .then(json => {
+        setProducts(json);
+        dispatch(addProducts(json));
+      });
   }
   return (
     <View style={ecommerceStyle.homeContainer}>
