@@ -9,6 +9,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
+  searchTabContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
   header: {
     width: width,
     height: 65,
@@ -129,6 +133,28 @@ const styles = StyleSheet.create({
   wishlistIcon: {
     width: 24,
     height: 24,
+  },
+  searchView: {
+    width: '90%',
+    height: 50,
+    borderRadius: 20,
+    borderWidth: 0.5,
+    alignSelf: 'center',
+    marginTop: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingLeft: 20,
+    paddingRight: 20,
+    alignItems: 'center',
+  },
+  searchIcon: {
+    width: 24,
+    height: 24,
+    resizeMode: 'center',
+  },
+  input: {
+    width: '80%',
+    marginLeft: 10,
   },
 });
 
