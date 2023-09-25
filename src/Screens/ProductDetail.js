@@ -19,7 +19,7 @@ const ProductDetail = () => {
         rightIcon={require('../images/cart.png')}
         title={'Product Detail'}
         onClickLeftIcon={()=> {
-          navigation.navigate('Home.js',)
+          navigation.goBack()
         }}
       />
       <ScrollView>
