@@ -5,6 +5,10 @@ const styles = StyleSheet.create({
   homeContainer: {
     flex: 1,
   },
+  productDetailContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
   header: {
     width: width,
     height: 65,
@@ -76,6 +80,55 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     marginLeft: 20,
     marginTop: 5,
+  },
+  banner: {
+    width: '100%',
+    height: 300,
+    resizeMode: 'center',
+  },
+  productDetailTitle: {
+    fontSize: 23,
+    color: '#000',
+    fontWeight: '600',
+    marginLeft: 20,
+    marginTop: 20,
+  },
+  productDetailDesc: {
+    fontSize: 16,
+    marginLeft: 20,
+    marginRight: 20,
+    marginTop: 10,
+  },
+  productDetailPrice: {
+    color: 'green',
+    marginLeft: 20,
+    marginTop: 20,
+    fontSize: 20,
+    fontWeight: '800',
+  },
+  CustomButton: {
+    width: Dimensions.get('window').width - 40,
+    height: 53,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+    marginTop: 30,
+    borderRadius: 10,
+  },
+  wishlistBtn: {
+    position: 'absolute',
+    right: 20,
+    top: 100,
+    backgroundColor: '#E2DFDF',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+  },
+  wishlistIcon: {
+    width: 24,
+    height: 24,
   },
 });
 

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import Header  from '../../src/common/Header'
 import ecommerceStyle from '../Project-Styles/ecommerceStyles'
 import { useNavigation } from '@react-navigation/native'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 const Home = () => {
   const navigation = useNavigation();
@@ -28,7 +29,15 @@ const Home = () => {
         renderItem={({item, index})=>{
           return(
             <>
-              <View style={ecommerceStyle.productItem}>
+              <TouchableOpacity 
+                activeOpacity={1}
+                style={ecommerceStyle.productItem}
+                onPress={()=>
+                  {
+                    navigation.navigate('ProductDetail', {data: item})
+                  }}
+                >
+                
                 <Image
                   source={{ uri: item.image }}
                   style={ecommerceStyle.itemImage}
@@ -48,7 +57,7 @@ const Home = () => {
                     {'$' + item.price}
                   </Text>
                 </View>
-              </View>
+              </TouchableOpacity>
             </>
           )
         }}
