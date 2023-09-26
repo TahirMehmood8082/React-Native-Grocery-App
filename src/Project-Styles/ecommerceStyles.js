@@ -171,6 +171,24 @@ const styles = StyleSheet.create({
     width: '80%',
     marginLeft: 10,
   },
+  qtyView: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  qtyBtn: {
+    padding: 5,
+    width: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 0.5,
+    borderRadius: 10,
+    marginLeft: 10,
+  },
+  qty: {
+    marginLeft: 10,
+    fontSize: 18,
+  },
 });
 
 export default styles;
