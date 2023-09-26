@@ -189,6 +189,68 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     fontSize: 18,
   },
+  modalView: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+    position: 'absolute',
+    top: 0,
+    backgroundColor: 'rgba(0,0,0,0.7)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  mainView:{
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    width: '90%',
+  },
+  modalBtn: {
+    width: '86%',
+    height: 50,
+    alignSelf: 'center',
+    backgroundColor: '#FD9102',
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalBtnText: {
+    color: '#fff',
+    fontSize: 18,
+  },
+  modalClearBtnIcon: {
+    width: 24,
+    height: 24,
+  },
+  modalClearBtn: {
+    position: 'absolute',
+    top: 10,
+    right: 20,
+  },
+  signupContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  signupTitle: {
+    color: '#000',
+    fontSize: 40,
+    marginLeft: 20,
+    marginTop: 50,
+    marginBottom: 50,
+  },
+  signupInput: {
+    width: '90%',
+    height: 50,
+    borderRadius: 10,
+    borderWidth: 0.5,
+    paddingLeft: 20,
+    alignSelf: 'center',
+    marginTop: 10,
+  },
+  signupScreenLoginText: {
+    alignSelf: 'center',
+    marginTop: 20,
+    fontSize: 18,
+    textDecorationLine: 'underline',
+  },
 });
 
 export default styles;

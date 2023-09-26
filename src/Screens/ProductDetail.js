@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TouchableOpacity, Alert } from 'react-native'
 import React, { useState } from 'react'
 import ecommerceStyles from '../Project-Styles/ecommerceStyles'
 import Header from '../common/Header'
@@ -7,12 +7,28 @@ import { useNavigation, useRoute } from '@react-navigation/native'
 import { useDispatch } from 'react-redux'
 import { ScrollView } from 'react-native-gesture-handler'
 import { addItemToCart } from '../redux/slices/CartSlice'
+import { addItemToWishList } from '../redux/slices/WishlistSlice'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import AskForLoginModel from '../common/AskForLoginModel'
 
 const ProductDetail = () => {
   const navigation = useNavigation()
   const route = useRoute()
   const dispatch = useDispatch()
   const [qty, setQty] = useState(1);
+  const [modalVisible, setModalVisible] = useState(false)
+
+  const checkUserStatus = async () => {
+    let isUserLoggedIn = false;
+    const status = await AsyncStorage.getItem('IS_USER_LOGGED_IN');
+
+    if (status == null){
+      isUserLoggedIn = false;
+    } else{
+      isUserLoggedIn = true
+    }
+    return isUserLoggedIn;
+  }
   return (
     <View style={ecommerceStyles.productDetailContainer}>
       <Header 
@@ -65,7 +81,13 @@ const ProductDetail = () => {
         </View>
         <TouchableOpacity 
           style={ecommerceStyles.wishlistBtn}
-          onPress={()=>{dispatch(addItemToWishlist(route.params.data))}}  
+          onPress={()=>{
+            if(checkUserStatus()== true){
+              dispatch(addItemToWishList(route.params.data))
+            }else{
+              setModalVisible(true)
+            }
+          }}  
         >
             <Image
               source={require('../images/wishlist.png')}
@@ -77,21 +99,40 @@ const ProductDetail = () => {
           title={'Add To Cart'}
           color={'#fff'}
           onClick={()=>{
-            dispatch(
-              addItemToCart({
-                category: route.params.data.category,
-                description: route.params.data.description,
-                id: route.params.data.id,
-                image: route.params.data.image,
-                price: route.params.data.price,
-                qty: qty,
-                rating: route.params.data.rating,
-                title: route.params.data.title,
-              }),
-            );
+            if(checkUserStatus() === true){
+              dispatch(
+                addItemToCart({
+                  category: route.params.data.category,
+                  description: route.params.data.description,
+                  id: route.params.data.id,
+                  image: route.params.data.image,
+                  price: route.params.data.price,
+                  qty: qty,
+                  rating: route.params.data.rating,
+                  title: route.params.data.title,
+                }),
+              );
+            } else{
+              setModalVisible(true);
+            }
+            
           }}
         />
       </ScrollView>
+      <AskForLoginModel 
+        modalVisible={modalVisible}
+        onClickLogin={()=>{
+          setModalVisible(false)
+          navigation.navigate('Login')
+        }}
+        onClose={()=>{
+          setModalVisible(false)
+        }}
+        onClickSignup={()=>{
+          setModalVisible(false)
+          navigation.navigate('Signup')
+        }}
+      />
     </View>
   )
 }
