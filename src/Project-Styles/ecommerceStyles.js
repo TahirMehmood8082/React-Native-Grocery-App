@@ -251,6 +251,35 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textDecorationLine: 'underline',
   },
+  userContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  userImage: {
+    width: 100,
+    height: 100,
+    alignSelf: 'center',
+    marginTop: 50,
+  },
+  userName: {
+    alignSelf: 'center',
+    marginTop: 10,
+    fontSize: 20,
+    fontWeight: '600',
+    color: '#000',
+  },
+  userFieldDivider:{
+    width: '90%',
+    height: 50,
+    borderBottomWidth: 0.3,
+    alignSelf: 'center',
+    borderBottomColor: '#DBDBDB',
+    paddingLeft: 20,
+    justifyContent: 'center',
+  },
+  userFieldTxt: {
+    color: '#000'
+  },
 });
 
 export default styles;
