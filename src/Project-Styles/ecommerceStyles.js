@@ -225,6 +225,32 @@ const styles = StyleSheet.create({
     top: 10,
     right: 20,
   },
+  signupContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  signupTitle: {
+    color: '#000',
+    fontSize: 40,
+    marginLeft: 20,
+    marginTop: 50,
+    marginBottom: 50,
+  },
+  signupInput: {
+    width: '90%',
+    height: 50,
+    borderRadius: 10,
+    borderWidth: 0.5,
+    paddingLeft: 20,
+    alignSelf: 'center',
+    marginTop: 10,
+  },
+  signupScreenLoginText: {
+    alignSelf: 'center',
+    marginTop: 20,
+    fontSize: 18,
+    textDecorationLine: 'underline',
+  },
 });
 
 export default styles;
