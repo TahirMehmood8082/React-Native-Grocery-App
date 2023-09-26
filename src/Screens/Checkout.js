@@ -2,16 +2,18 @@ import { View, Text, Image, FlatList, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import ecommerceStyles from '../Project-Styles/ecommerceStyles'
 import Header from '../common/Header'
-import { useNavigation } from '@react-navigation/native'
+import { useIsFocused, useNavigation } from '@react-navigation/native'
 import { useDispatch, useSelector } from 'react-redux'
 import { addItemToCart, reduceItemFromCart, removeItemFromCart } from '../redux/slices/CartSlice'
 import CustomButton from '../common/CustomButton'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const Checkout = () => {
   const navigation = useNavigation()
   const items = useSelector(state => state.cart);
   const [cartItems, setCartItems] = useState([])
   const [selectedMethod, setSelectedMethod] = useState(0)
+  const isFocussed = useIsFocused()
   const [selectedAddress, setSelectedAddress] = useState('Please Select Address')
   const dispatch = useDispatch()
   useEffect(()=>{
@@ -23,6 +25,12 @@ const Checkout = () => {
       total = total + item.qty * item.price
     })
     return total.toFixed(0)
+  }
+  useEffect(()=>{
+    getSelectedAddress();
+  }, [isFocussed]);
+  const getSelectedAddress = async () => {
+    setSelectedAddress(await AsyncStorage.getItem('MY_ADDRESS'))
   }
   return (
     <View style={ecommerceStyles.checkoutScreenContainer}>
@@ -174,7 +182,18 @@ const Checkout = () => {
           Cash on Delivery
         </Text>
       </TouchableOpacity>
-      <Text style={ecommerceStyles.checkoutScreenTitle}>Address</Text>
+      <View style={ecommerceStyles.checkoutScreenAddressView}>
+        <Text style={ecommerceStyles.checkoutScreenTitle}>Address</Text>
+        <Text 
+          style={
+            [ecommerceStyles.checkoutScreenTitle,
+            {textDecorationLine: 'underline', color: '#0269A0FB'}]
+          }
+          onPress={()=>{navigation.navigate('Addresses')}}
+          >
+            Edit Address
+        </Text>
+      </View>
       <Text
         style={[ecommerceStyles.checkoutScreenTitle, {marginTop:10, fontSize: 16, color: '#636363'}]}
       >

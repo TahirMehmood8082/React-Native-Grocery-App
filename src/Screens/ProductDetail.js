@@ -99,7 +99,7 @@ const ProductDetail = () => {
           title={'Add To Cart'}
           color={'#fff'}
           onClick={()=>{
-            if(checkUserStatus() === true){
+            // if(checkUserStatus() === true){
               dispatch(
                 addItemToCart({
                   category: route.params.data.category,
@@ -112,9 +112,9 @@ const ProductDetail = () => {
                   title: route.params.data.title,
                 }),
               );
-            } else{
-              setModalVisible(true);
-            }
+            // } else{
+            //   setModalVisible(true);
+            // }
             
           }}
         />
