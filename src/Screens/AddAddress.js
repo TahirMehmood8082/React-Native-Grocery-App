@@ -2,24 +2,26 @@ import { View, Text, TextInput, Image, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import ecommerceStyles from '../Project-Styles/ecommerceStyles'
 import Header from '../common/Header'
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useRoute } from '@react-navigation/native'
 import CustomButton from '../common/CustomButton'
 import { useDispatch } from 'react-redux'
-import { addAddress } from '../redux/slices/AddressSlice'
+import { addAddress, updateAddress } from '../redux/slices/AddressSlice'
+import uuid from 'react-native-uuid';
 
 const AddAddress = () => {
+  const route = useRoute()
   const navigation = useNavigation()
-  const [type, setType] = useState(1)
-  const [state, setState] = useState('')
-  const [city, setCity] = useState('')
-  const [pincode, setPincode] = useState('')
+  const [type, setType] = useState(route.params.type == 'edit'? route.params.data.type == 'Home'? 1:2:1);
+  const [state, setState] = useState(route.params.type == 'edit'? route.params.data.state: '',)
+  const [city, setCity] = useState(route.params.type == 'edit'? route.params.data.city: '',)
+  const [pincode, setPincode] = useState(route.params.type == 'edit'? route.params.data.pincode: '',)
   const dispatch = useDispatch()
-  
+
   return (
     <View style={ecommerceStyles.addressesScreenContainer}>
       <Header 
         leftIcon={require('../images/back.png')}
-        title={'Add New Address'}
+        title={route.params.type == 'edit' ? 'Edit Address' : 'Add New Address'}
         onClickLeftIcon={()=>{navigation.goBack()}}
       />
       <TextInput 
@@ -84,15 +86,29 @@ const AddAddress = () => {
         title={'Save Address'}
         color={'#fff'}
         onClick={()=> {
-          dispatch(
-            addAddress({
-              state: state,
-              city: city,
-              pincode: pincode,
-              type: type == 1 ? 'Home' : 'office',
-            }),
-            navigation.goBack(),
-          )
+          if(route.params.type == 'edit'){
+            dispatch(
+              updateAddress({
+                state: state,
+                city: city,
+                pincode: pincode,
+                type: type == 1 ? 'Home' : 'office',
+                id: route.params.data.id,
+              }),
+              navigation.goBack(),
+            )
+          } else {
+            dispatch(
+              addAddress({
+                state: state,
+                city: city,
+                pincode: pincode,
+                type: type == 1 ? 'Home' : 'office',
+                id:uuid.v4() 
+              }),
+              navigation.goBack(),
+            )
+          }
         }}
       />
     </View>

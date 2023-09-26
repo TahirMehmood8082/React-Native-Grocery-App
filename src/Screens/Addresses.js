@@ -3,13 +3,15 @@ import React, { useEffect } from 'react'
 import ecommerceStyles from '../Project-Styles/ecommerceStyles'
 import Header from '../common/Header'
 import { useIsFocused, useNavigation } from '@react-navigation/native'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import {deleteAddress} from '../redux/slices/AddressSlice'
 
 const Addresses = () => {
   const navigation = useNavigation()
   const addressList = useSelector(state => state.address)
   const isFocused = useIsFocused()
+  const dispatch = useDispatch()
   useEffect(()=>{
     console.log(addressList)
   }, [isFocused])
@@ -49,13 +51,19 @@ const Addresses = () => {
                 {item.type}
               </Text>
               <View style={ecommerceStyles.addressListEditDeleteView}>
-                <TouchableOpacity style={[ecommerceStyles.addressListEditDeleteIcon, {marginRight:10}]}>
+                <TouchableOpacity 
+                  style={[ecommerceStyles.addressListEditDeleteIcon, {marginRight:10}]}
+                  onPress={()=>{navigation.navigate('AddAddress', {type: 'edit', data:item})}}
+                  >
                   <Image 
                     source={require('../images/edit.png')}
                     style={ecommerceStyles.addressListEditDeleteIcon}
                   />
                 </TouchableOpacity>
-                <TouchableOpacity style={ecommerceStyles.addressListEditDeleteIcon}>
+                <TouchableOpacity 
+                  style={ecommerceStyles.addressListEditDeleteIcon}
+                  onPress={()=>{dispatch(deleteAddress(item.id))}}
+                >
                   <Image 
                     source={require('../images/delete.png')}
                     style={ecommerceStyles.addressListEditDeleteIcon}
@@ -68,7 +76,7 @@ const Addresses = () => {
       />
       <TouchableOpacity
         style = {ecommerceStyles.addressesScreenAddButton}
-        onPress={()=>{navigation.navigate('AddAddress')}}
+        onPress={()=>{navigation.navigate('AddAddress', {type: 'new'})}}
       >
         <Text style={{ fontSize: 30 ,Color: '#fff'}}>+</Text>
       </TouchableOpacity>
