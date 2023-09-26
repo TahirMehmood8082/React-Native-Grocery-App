@@ -5,6 +5,8 @@ import { NavigationContainer } from  '@react-navigation/native'
 import Main from './Screens/Main'
 import ProductDetail from './Screens/ProductDetail'
 import Cart from './Screens/Cart'
+import Login from './Screens/Login'
+import Signup from './Screens/Signup'
 
 const Stack = createStackNavigator()
 const AppNavigator = () => {
@@ -27,6 +29,18 @@ const AppNavigator = () => {
         <Stack.Screen
           name='Cart'
           component={Cart}
+          options={{headerShown:false}}
+        />
+
+        <Stack.Screen
+          name='Login'
+          component={Login}
+          options={{headerShown:false}}
+        />
+
+        <Stack.Screen
+          name='Signup'
+          component={Signup}
           options={{headerShown:false}}
         />
 
