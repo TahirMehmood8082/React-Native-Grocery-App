@@ -5,6 +5,7 @@ import Header from '../common/Header'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigation } from '@react-navigation/native'
 import { addItemToCart, reduceItemFromCart, removeItemFromCart } from '../redux/slices/CartSlice'
+import CheckoutLayout from '../common/CheckoutLayout'
 
 const Cart = () => {
   const items = useSelector(state => state.cart);
@@ -14,6 +15,13 @@ const Cart = () => {
   useEffect(()=>{
     setCartItems(items.data)
   }, [items])
+  const getTotal=()=>{
+    let total = 0
+    cartItems.map(item =>{
+      total = total + item.qty * item.price
+    })
+    return total.toFixed(0)
+  }
   return (
     <View style={ecommerceStyles.wishlistTabContainer}>
       <Header title='Cart Items'/>
@@ -73,6 +81,18 @@ const Cart = () => {
         </TouchableOpacity>
         )
       }}/>
+      {cartItems.length < 1 && 
+        <View style={ecommerceStyles.cartNoItems}>
+          <Text>No Items in Cart</Text>
+        </View>
+      }
+      {cartItems.length > 0 && (
+        <CheckoutLayout 
+          items={cartItems.length} 
+          total={getTotal()}
+        />
+      )}
+      
     </View>
   )
 }

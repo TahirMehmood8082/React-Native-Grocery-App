@@ -280,6 +280,72 @@ const styles = StyleSheet.create({
   userFieldTxt: {
     color: '#000'
   },
+  checkoutContainer: {
+    position: 'absolute',
+    bottom: 0,
+    height: 70,
+    width: Dimensions.get('window').width,
+    backgroundColor: '#fff',
+    flexDirection: 'row',
+  },
+  checkoutTab: {
+    width: '50%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  checkoutBtn: {
+    width: '80%',
+    height: '60%',
+    backgroundColor: '#FF8605',
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  checkoutTotal: {
+    fontWeight: '700',
+    fontSize: 18,
+  },
+  cartNoItems: {
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  checkoutScreenContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+  checkoutScreenTitle: {
+    fontSize: 18,
+    marginLeft: 20,
+    marginTop: 30,
+    color: '#000',
+  },
+  checkoutScreenTotalView: {
+    width: '100%',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    height: 70,
+    alignItems: 'center',
+    borderBottomWidth: 0.3,
+    borderBlockColor: '#B7B7B7',
+  },
+  checkoutScreenPaymentMethods: {
+    flexDirection: 'row',
+    width: '90%',
+    marginTop: 20,
+    paddingLeft: 20,
+  },
+  checkoutScreenPaymentMethodsImage: {
+    width: 24,
+    height: 24,
+  },
+  checkoutScreenPaymentMethodsTxt:{
+    marginLeft: 15,
+    fontSize: 16,
+    color: '#000',
+  },
 });
 
 export default styles;
