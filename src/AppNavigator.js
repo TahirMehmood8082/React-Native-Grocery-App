@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { NavigationContainer } from  '@react-navigation/native'
 import Main from './Screens/Main'
 import ProductDetail from './Screens/ProductDetail'
+import Cart from './Screens/Cart'
 
 const Stack = createStackNavigator()
 const AppNavigator = () => {
@@ -20,6 +21,12 @@ const AppNavigator = () => {
         <Stack.Screen
           name='ProductDetail'
           component={ProductDetail}
+          options={{headerShown:false}}
+        />
+
+        <Stack.Screen
+          name='Cart'
+          component={Cart}
           options={{headerShown:false}}
         />
 

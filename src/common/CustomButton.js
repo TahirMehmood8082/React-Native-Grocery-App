@@ -6,7 +6,6 @@ import ecommerceStyles from '../Project-Styles/ecommerceStyles'
 const CustomButton = ({bg, title, onClick, color}) => {
   return (
     <TouchableOpacity 
-      activeOpacity={1} 
       style= {[ecommerceStyles.CustomButton, {backgroundColor: bg}]}
       onPress={()=>{onClick()}}
     >

@@ -1,5 +1,5 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import ecommerceStyles from '../Project-Styles/ecommerceStyles'
 import Header from '../common/Header'
 import CustomButton from '../common/CustomButton'
@@ -12,6 +12,7 @@ const ProductDetail = () => {
   const navigation = useNavigation()
   const route = useRoute()
   const dispatch = useDispatch()
+  const [qty, setQty] = useState(1);
   return (
     <View style={ecommerceStyles.productDetailContainer}>
       <Header 
@@ -21,6 +22,7 @@ const ProductDetail = () => {
         onClickLeftIcon={()=> {
           navigation.goBack()
         }}
+        isCart={true}
       />
       <ScrollView>
         <Image 
@@ -33,13 +35,33 @@ const ProductDetail = () => {
         <Text style={ecommerceStyles.productDetailDesc}>
           {route.params.data.description}
         </Text>
-        <View style={{flexDirection: 'row'}}>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
         <Text style={[ecommerceStyles.productDetailPrice,{color: '#000'}]}>
             {'Price:'}
           </Text>
           <Text style={ecommerceStyles.productDetailPrice}>
             {'$' + route.params.data.price}
           </Text>
+          <View style={ecommerceStyles.qtyView}>
+          <TouchableOpacity 
+            style={ecommerceStyles.qtyBtn}
+            onPress={()=>{
+              if(qty > 1){
+                setQty(qty -1)
+              }
+            }}>
+            <Text style={{fontSize: 18, fontWeight: '600'}}>-</Text>
+          </TouchableOpacity>
+          <Text style={ecommerceStyles.qty}>{qty}</Text>
+          <TouchableOpacity 
+            style={ecommerceStyles.qtyBtn}
+            onPress={()=> {
+              setQty(qty + 1)
+            }}
+          >
+            <Text style={{fontSize: 18, fontWeight: '600'}}>+</Text>
+          </TouchableOpacity>
+        </View>
         </View>
         <TouchableOpacity 
           style={ecommerceStyles.wishlistBtn}
@@ -54,7 +76,20 @@ const ProductDetail = () => {
           bg={'#FF9A0C'}
           title={'Add To Cart'}
           color={'#fff'}
-          onClick={()=>{dispatch(addItemToCart(route.params.data))}}
+          onClick={()=>{
+            dispatch(
+              addItemToCart({
+                category: route.params.data.category,
+                description: route.params.data.description,
+                id: route.params.data.id,
+                image: route.params.data.image,
+                price: route.params.data.price,
+                qty: qty,
+                rating: route.params.data.rating,
+                title: route.params.data.title,
+              }),
+            );
+          }}
         />
       </ScrollView>
     </View>
